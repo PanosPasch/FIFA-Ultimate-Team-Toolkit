@@ -4,12 +4,12 @@ namespace UltimateTeam.Toolkit.Parameters
 {
     public class FitnessCard : SearchParameterBase<uint>
     {
-        public const uint ShinyBronzeFitness = 1615614740;
-        public const uint ShinySilverFitness = 1615614741;
-        public const uint ShinyGoldFitness = 1615614742;
-        public const uint NonShinyBronzeFitness = 1615614737;
-        public const uint NonShinySilverFitness = 1615614738;
-        public const uint NonShinyGoldFitness = 1615614739;
+        public const uint ShinyBronzeFitness = 1615614740 - 1610612736;
+        public const uint ShinySilverFitness = 1615614741 - 1610612736;
+        public const uint ShinyGoldFitness = 1615614742 - 1610612736;
+        public const uint NonShinyBronzeFitness = 1615614737 - 1610612736;
+        public const uint NonShinySilverFitness = 1615614738 - 1610612736;
+        public const uint NonShinyGoldFitness = 1615614739 - 1610612736;
         
         private FitnessCard(string description, uint value)
         {

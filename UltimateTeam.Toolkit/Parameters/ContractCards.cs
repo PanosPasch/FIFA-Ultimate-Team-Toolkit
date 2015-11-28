@@ -4,18 +4,18 @@ namespace UltimateTeam.Toolkit.Parameters
 {
     public class ContractCard : SearchParameterBase<uint>
     {
-        public const uint ShinyBronzePlayerContract = 1615613740;
-        public const uint ShinySilverPlayerContract = 1615613741;
-        public const uint ShinyGoldPlayerContract = 1615613742;
-        public const uint NonShinyBronzePlayerContract = 1615613737;
-        public const uint NonShinySilverPlayerContract = 1615613738;
-        public const uint NonShinyGoldPlayerContract = 1615613739;
-        public const uint ShinyBronzeManagerContract = 1615613746;
-        public const uint ShinySilverManagerContract = 1615613747;
-        public const uint ShinyGoldManagerContract = 1615613748;
-        public const uint NonShinyBronzeManagerContract = 1615613743;
-        public const uint NonShinySilverManagerContract = 1615613744;
-        public const uint NonShinyGoldManagerContract = 1615613745;
+        public const uint ShinyBronzePlayerContract = 1615613740 - 1610612736;
+        public const uint ShinySilverPlayerContract = 1615613741 - 1610612736;
+        public const uint ShinyGoldPlayerContract = 1615613742 - 1610612736;
+        public const uint NonShinyBronzePlayerContract = 1615613737 - 1610612736;
+        public const uint NonShinySilverPlayerContract = 1615613738 - 1610612736;
+        public const uint NonShinyGoldPlayerContract = 1615613739 - 1610612736;
+        public const uint ShinyBronzeManagerContract = 1615613746 - 1610612736;
+        public const uint ShinySilverManagerContract = 1615613747 - 1610612736;
+        public const uint ShinyGoldManagerContract = 1615613748 - 1610612736;
+        public const uint NonShinyBronzeManagerContract = 1615613743 - 1610612736;
+        public const uint NonShinySilverManagerContract = 1615613744 - 1610612736;
+        public const uint NonShinyGoldManagerContract = 1615613745 - 1610612736;
    
 
         private ContractCard(string description, uint value)

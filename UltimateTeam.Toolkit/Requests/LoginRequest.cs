@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UltimateTeam.Toolkit.Constants;
@@ -103,7 +104,7 @@ namespace UltimateTeam.Toolkit.Requests
             return sessionId;
         }
 
-        private static string GetGameSku(Platform platform)
+        public static string GetGameSku(Platform platform)
         {
             switch (platform)
             {
@@ -118,11 +119,11 @@ namespace UltimateTeam.Toolkit.Requests
                 case Platform.Pc:
                     return "FFA16PCC";
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
+                    throw new ArgumentOutOfRangeException(/*nameof(platform)*/platform.ToString(), platform, null);
             }
         }
 
-        private static string GetNucleusPersonaPlatform(Platform platform)
+        public static string GetNucleusPersonaPlatform(Platform platform)
         {
             switch (platform)
             {
@@ -215,10 +216,21 @@ namespace UltimateTeam.Toolkit.Requests
 
             codeResponseMessage.EnsureSuccessStatusCode();
 
+            _twoFactorCodeProvider.StoreNxCookie(HttpClient.MessageHandler.CookieContainer, _loginDetails.Username);
+
             var contentData = await codeResponseMessage.Content.ReadAsStringAsync();
 
             if (contentData.Contains("Incorrect code entered"))
                 throw new FutException("Incorrect TwoFactorCode entered.");
+            else if (contentData.Contains("Authenticator"))
+            {
+                codeResponseMessage = await HttpClient.PostAsync(codeResponseMessage.RequestMessage.RequestUri, new FormUrlEncodedContent(
+                                                                                                              new[]
+                                                                                                              {
+                                                                                                                  new KeyValuePair<string, string>("_eventId", "cancel"),
+                                                                                                                  new KeyValuePair<string, string>("appDevice", "IPHONE")
+                                                                                                              }));
+            }
         }
 
         private async Task<HttpResponseMessage> GetMainPageAsync()

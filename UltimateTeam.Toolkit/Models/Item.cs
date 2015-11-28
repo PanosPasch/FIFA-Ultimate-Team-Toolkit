@@ -15,6 +15,8 @@
         * Attribute6 = Heading
         */
 
+        public byte Amount { get; set; }
+
         public byte Attribute1 { get; set; }
 
         public byte Attribute2 { get; set; }
@@ -27,13 +29,19 @@
 
         public byte Attribute6 { get; set; }
 
+        public byte Bronze { get; set; }
+
         public uint ClubId { get; set; }
 
         public string CommonName { get; set; }
 
         public DateOfBirth DateOfBirth { get; set; }
 
+        public string Desc { get; set; }
+
         public string FirstName { get; set; }
+
+        public byte Gold { get; set; }
 
         public byte Height { get; set; }
 
@@ -69,6 +77,6 @@
                 CardType = CardType.Silver;
         }
 
-        public string Desc { get; set; }
+        public byte Silver { get; set; }
     }
 }

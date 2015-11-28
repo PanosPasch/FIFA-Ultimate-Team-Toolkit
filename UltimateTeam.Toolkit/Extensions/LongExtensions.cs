@@ -5,6 +5,10 @@
         public static long CalculateBaseId(this long resourceId)
         {
             var baseId = resourceId;
+            if (baseId < 0)
+            {
+                baseId += 2147483648;
+            }
             var version = 0;
 
             while (baseId > 16777216)
@@ -13,10 +17,10 @@
                 switch (version)
                 {
                     case 1:
-                        baseId -= 1342177280;
+                        baseId -= 50331648;
                         break;
                     case 2:
-                        baseId -= 50331648;
+                        baseId -= 16777216;
                         break;
                     default:
                         baseId -= 16777216;

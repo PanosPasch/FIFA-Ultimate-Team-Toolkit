@@ -55,23 +55,23 @@ namespace UltimateTeam.Toolkit.Parameters
             yield return new Position("Defenders", Defenders);
             yield return new Position("Midfielders", Midfielders);
             yield return new Position("Attackers", Attackers);
-            yield return new Position("Goalkeeper", GoalKeeper);
-            yield return new Position("Right wing back", RightWingBack);
-            yield return new Position("Right back", RightBack);
-            yield return new Position("Center back", CenterBack);
-            yield return new Position("Left back", LeftBack);
-            yield return new Position("Left wing back", LeftWingBack);
-            yield return new Position("Central defensive midfielder", CentralDefensiveMidfielder);
-            yield return new Position("Right midfielder", RightMidfielder);
-            yield return new Position("Central midfielder", CentralMidfielder);
-            yield return new Position("Left midfielder", LeftMidfielder);
-            yield return new Position("Central attacking midfielder", CentralAttackingMidfielder);
-            yield return new Position("Right forward", RightForward);
-            yield return new Position("Center forward", CentralForward);
-            yield return new Position("Left forward", LeftForward);
-            yield return new Position("Right winger", RightWinger);
-            yield return new Position("Striker", Striker);
-            yield return new Position("Left winger", LeftWinger);
+            yield return new Position("GK", GoalKeeper);
+            yield return new Position("RWB", RightWingBack);
+            yield return new Position("RB", RightBack);
+            yield return new Position("CB", CenterBack);
+            yield return new Position("LB", LeftBack);
+            yield return new Position("LWB", LeftWingBack);
+            yield return new Position("CDM", CentralDefensiveMidfielder);
+            yield return new Position("RM", RightMidfielder);
+            yield return new Position("CM", CentralMidfielder);
+            yield return new Position("LM", LeftMidfielder);
+            yield return new Position("CAM", CentralAttackingMidfielder);
+            yield return new Position("RF", RightForward);
+            yield return new Position("CF", CentralForward);
+            yield return new Position("LF", LeftForward);
+            yield return new Position("RW", RightWinger);
+            yield return new Position("ST", Striker);
+            yield return new Position("LW", LeftWinger);
         }
     }
 }

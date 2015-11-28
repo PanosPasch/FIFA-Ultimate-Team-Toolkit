@@ -2,7 +2,7 @@
 {
     public abstract class SearchParameters
     {
-        private const byte DefaultPageSize = 12;
+        private const byte DefaultPageSize = 49;
 
         public string Type { get; set; }
         
@@ -37,6 +37,8 @@
         public string StaffType { get; set; }
 
         public long ResourceId { get; set; }
+
+        public long DefinitionId { get; set; }
 
         public byte PageSize { get; set; }
 

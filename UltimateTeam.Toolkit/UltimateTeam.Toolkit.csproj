@@ -90,6 +90,7 @@
     <Compile Include="Models\ConsumablesCategory.cs" />
     <Compile Include="Models\ConsumablesResponse.cs" />
     <Compile Include="Models\ClubItemResponse.cs" />
+    <Compile Include="Models\SessionDetails.cs" />
     <Compile Include="Models\CreditsResponse.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\DateOfBirth.cs" />

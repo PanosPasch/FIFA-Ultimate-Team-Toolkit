@@ -41,6 +41,9 @@ namespace UltimateTeam.Toolkit.Parameters
             if (ResourceId > 0)
                 uriString += "&maskedDefId=" + ResourceId.CalculateBaseId(); // previously was "&definitionId="
 
+            if (DefinitionId > 0)
+                uriString += "&definitionId=" + DefinitionId.ToString();
+
             SetPosition(ref uriString);
 
             uriString += "&type=" + Type.ToLower();
