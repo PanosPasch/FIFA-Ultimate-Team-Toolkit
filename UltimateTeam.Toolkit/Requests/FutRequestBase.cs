@@ -68,6 +68,26 @@ namespace UltimateTeam.Toolkit.Requests
             HttpClient.AddRequestHeader(HttpHeaders.UserAgent, "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36");
         }
 
+        protected void AddMobileUserAgent()
+        {
+            HttpClient.AddRequestHeader(HttpHeaders.UserAgent, "Mozilla/5.0 (Linux; Android 5.0; Elephone P7000 Build/LRX21M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/37.0.0.0 Mobile Safari/537.36");
+        }
+
+        protected void AddGatewayHeaders(string token_type, string auth_string)
+        {
+            HttpClient.AddRequestHeader("Authorization", string.Format("{0} {1}", token_type, auth_string));
+        }
+
+        protected void AddXRequestedWith()
+        {
+            HttpClient.AddRequestHeader("X-Requested-With", "com.ea.fifaultimate_row");
+        }
+
+        protected void AddXWapProfile()
+        {
+            HttpClient.AddRequestHeader("x-wap-profile", "http://218.249.47.94/Xianghe/MTK_LTE_Phone_KK_UAprofile.xml");
+        }
+
         protected void AddAcceptHeader(string value)
         {
             HttpClient.AddRequestHeader(HttpHeaders.Accept, value);

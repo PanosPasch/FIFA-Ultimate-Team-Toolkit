@@ -13,6 +13,8 @@ namespace UltimateTeam.Toolkit
 
         Task<LoginResponse> LoginAsync(LoginDetails loginDetails, ITwoFactorCodeProvider twoFactorCodeProvider);
 
+        Task<LoginResponse> LoginMobileAsync(LoginDetails loginDetails, ITwoFactorCodeProvider twoFactorCodeProvider);
+
         Task<AuctionResponse> SearchAsync(SearchParameters searchParameters);
 
         Task<AuctionResponse> PlaceBidAsync(AuctionInfo auctionInfo, uint bidAmount = 0);

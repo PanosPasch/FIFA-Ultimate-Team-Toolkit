@@ -24,6 +24,8 @@ namespace UltimateTeam.Toolkit.Factories
 
         private Func<LoginDetails, ITwoFactorCodeProvider, IFutRequest<LoginResponse>> _loginRequestFactory;
 
+        private Func<LoginDetails, ITwoFactorCodeProvider, IFutRequest<LoginResponse>> _loginMobileRequestFactory;
+
         private Func<SearchParameters, IFutRequest<AuctionResponse>> _searchRequestFactory;
 
         private Func<AuctionInfo, uint, IFutRequest<AuctionResponse>> _placeBidRequestFactory;
@@ -136,6 +138,28 @@ namespace UltimateTeam.Toolkit.Factories
             {
                 value.ThrowIfNullArgument();
                 _loginRequestFactory = value;
+            }
+        }
+
+        public Func<LoginDetails, ITwoFactorCodeProvider, IFutRequest<LoginResponse>> LoginMobileRequestFactory
+        {
+            get
+            {
+                return _loginMobileRequestFactory ?? (_loginMobileRequestFactory = (details, twoFactorCodeProvider) =>
+                {
+                    if (details.Platform == Platform.Xbox360 || details.Platform == Platform.XboxOne)
+                    {
+                        _resources.FutHome = Resources.FutHomeXbox;
+                    }
+                    var loginRequest = new LoginMobileRequest(details, twoFactorCodeProvider) { HttpClient = HttpClient, Resources = _resources };
+                    loginRequest.SetCookieContainer(_cookieContainer);
+                    return loginRequest;
+                });
+            }
+            set
+            {
+                value.ThrowIfNullArgument();
+                _loginMobileRequestFactory = value;
             }
         }
 

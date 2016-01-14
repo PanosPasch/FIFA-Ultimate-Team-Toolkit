@@ -38,6 +38,18 @@ namespace UltimateTeam.Toolkit
             return loginResponse;
         }
 
+        public async Task<LoginResponse> LoginMobileAsync(LoginDetails loginDetails, ITwoFactorCodeProvider twoFactorCodeProvider)
+        {
+            loginDetails.ThrowIfNullArgument();
+
+            var loginRequest = _requestFactories.LoginMobileRequestFactory(loginDetails, twoFactorCodeProvider);
+            var loginResponse = await loginRequest.PerformRequestAsync();
+            RequestFactories.PhishingToken = loginResponse.PhishingToken;
+            RequestFactories.SessionId = loginResponse.SessionId;
+
+            return loginResponse;
+        }
+
         public Task<AuctionResponse> SearchAsync(SearchParameters searchParameters)
         {
             searchParameters.ThrowIfNullArgument();
