@@ -104,7 +104,7 @@ namespace UltimateTeam.Toolkit.Requests
             var session_code = (await Deserialize<GatewayResponse>(accessTokenResponse)).code;
 
             var authResponseMessage = await HttpClient.PostAsync(string.Format("{0}/ut/auth?timestamp={1}", _route, CreateTimestamp()), new StringContent(
-               string.Format(@"{{ ""isReadOnly"": false, ""sku"": ""FUT16AND"", ""clientVersion"": 16, ""nucleusPersonaId"": {0}, ""gameSku"": ""{2}"", ""locale"": ""en-GB"", ""method"": ""authcode"", ""priorityLevel"":4, ""identification"": {{ ""authCode"": ""{4}"", ""redirectUrl"": ""nucleus:rest"" }} }}",
+               string.Format(@"{{ ""isReadOnly"": false, ""sku"": ""FUT16AND"", ""clientVersion"": 17, ""nucleusPersonaId"": {0}, ""gameSku"": ""{2}"", ""locale"": ""en-GB"", ""method"": ""authcode"", ""priorityLevel"":4, ""identification"": {{ ""authCode"": ""{4}"", ""redirectUrl"": ""nucleus:rest"" }} }}",
                     persona.PersonaId, persona.PersonaName, GetGameSku(platform), GetNucleusPersonaPlatform(platform), session_code)));
             authResponseMessage.EnsureSuccessStatusCode();
             var sessionId = Regex.Match(await authResponseMessage.Content.ReadAsStringAsync(), "\"sid\":\"\\S+\"")
