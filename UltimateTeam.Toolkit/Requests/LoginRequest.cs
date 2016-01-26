@@ -193,7 +193,7 @@ namespace UltimateTeam.Toolkit.Requests
 
             //check if twofactorcode is required
             var contentData = await loginResponseMessage.Content.ReadAsStringAsync();
-            if (contentData.Contains("We sent a security code to your") || contentData.Contains("Your security code was sent to"))
+            if (contentData.Contains("We sent a security code to your") || contentData.Contains("Your security code was sent to") || contentData.Contains("6-digit verification"))
                 await SetTwoFactorCodeAsync(loginResponseMessage);
         }
 
@@ -242,7 +242,7 @@ namespace UltimateTeam.Toolkit.Requests
 
             //check if twofactorcode is required
             var contentData = await mainPageResponseMessage.Content.ReadAsStringAsync();
-            if (contentData.Contains("We sent a security code to your") || contentData.Contains("Your security code was sent to"))
+            if (contentData.Contains("We sent a security code to your") || contentData.Contains("Your security code was sent to") || contentData.Contains("6-digit verification"))
                 await SetTwoFactorCodeAsync(mainPageResponseMessage);
 
             return mainPageResponseMessage;
