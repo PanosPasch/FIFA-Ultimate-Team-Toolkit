@@ -2,7 +2,7 @@
 {
     public abstract class SearchParameters
     {
-        private const byte DefaultPageSize = 49;
+        private const byte DefaultPageSize = 12;
 
         public string Type { get; set; }
         
