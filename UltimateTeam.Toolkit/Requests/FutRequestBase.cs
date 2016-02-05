@@ -13,11 +13,55 @@ namespace UltimateTeam.Toolkit.Requests
     {
         private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error };
 
+        private string _nucleusId;
+
+        private string _personaId;
+
         private string _phishingToken;
 
         private string _sessionId;
 
         private IHttpClient _httpClient;
+
+        public string NucleusId
+        {
+            get
+            {
+                if (_nucleusId == null)
+                {
+                    return "0";
+                }
+                else
+                {
+                    return _nucleusId;
+                }
+            }
+            set
+            {
+                value.ThrowIfInvalidArgument();
+                _nucleusId = value;
+            }
+        }
+
+        public string PersonaId
+        {
+            get
+            {
+                if (_personaId == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return _personaId;
+                }
+            }
+            set
+            {
+                value.ThrowIfInvalidArgument();
+                _personaId = value;
+            }
+        }
 
         public string PhishingToken
         {
@@ -30,6 +74,17 @@ namespace UltimateTeam.Toolkit.Requests
 
         public string SessionId
         {
+            get
+            {
+                if (_sessionId == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return _sessionId;
+                }
+            }
             set
             {
                 value.ThrowIfInvalidArgument();
@@ -54,11 +109,13 @@ namespace UltimateTeam.Toolkit.Requests
             HttpClient.AddRequestHeader(NonStandardHttpHeaders.PhishingToken, _phishingToken);
             HttpClient.AddRequestHeader(NonStandardHttpHeaders.EmbedError, "true");
             HttpClient.AddRequestHeader(NonStandardHttpHeaders.SessionId, _sessionId);
+            HttpClient.AddRequestHeader("X-Requested-With", "ShockwaveFlash/20.0.0.286");
+            HttpClient.AddRequestHeader("Origin", "https://www.easports.com");
             AddAcceptEncodingHeader();
             AddAcceptLanguageHeader();
             AddAcceptHeader("application/json");
             HttpClient.AddRequestHeader(HttpHeaders.ContentType, "application/json");
-            AddReferrerHeader("http://www.easports.com/iframe/fut/bundles/futweb/web/flash/FifaUltimateTeam.swf");
+            AddReferrerHeader("https://www.easports.com/iframe/fut16/bundles/futweb/web/flash/FifaUltimateTeam.swf?cl=155438");
             AddUserAgent();
             HttpClient.AddConnectionKeepAliveHeader();
         }

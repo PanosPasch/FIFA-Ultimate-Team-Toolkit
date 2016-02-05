@@ -157,6 +157,8 @@
     <Compile Include="Requests\ClubImageRequest.cs" />
     <Compile Include="Requests\ConsumablesRequest.cs" />
     <Compile Include="Requests\ClubItemRequest.cs" />
+    <Compile Include="Requests\PinEventRequest.cs" />
+    <Compile Include="Requests\RemoveAllFromTradePileRequest.cs" />
     <Compile Include="Requests\LoginMobileRequest.cs" />
     <Compile Include="Requests\SquadDetailsRequest.cs" />
     <Compile Include="Requests\SquadListRequest.cs" />

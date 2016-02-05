@@ -16,6 +16,10 @@ namespace UltimateTeam.Toolkit.Factories
 
         private readonly Resources _resources = new Resources();
 
+        private string _nucleusId;
+
+        private string _personaId;
+
         private string _phishingToken;
 
         private string _sessionId;
@@ -60,6 +64,10 @@ namespace UltimateTeam.Toolkit.Factories
 
         private Func<AuctionInfo, IFutRequest<byte>> _removeFromTradePileRequestFactory;
 
+        private Func<IFutRequest<byte>> _removeAllFromTradePileRequestFactory;
+
+        private Func<bool, int, string, string, string, IFutRequest<byte>> _sendPinEventRequestFactory;
+
         private Func<ushort, IFutRequest<SquadDetailsResponse>> _squadDetailsRequestFactory;
 
         private Func<ItemData, IFutRequest<SendItemToTradePileResponse>> _sendItemToTradePileRequestFactory;
@@ -82,6 +90,26 @@ namespace UltimateTeam.Toolkit.Factories
         public FutRequestFactories(CookieContainer cookieContainer)
         {
             _cookieContainer = cookieContainer;
+        }
+
+        public string NucleusId
+        {
+            get { return _nucleusId; }
+            set
+            {
+                value.ThrowIfInvalidArgument();
+                _nucleusId = value;
+            }
+        }
+
+        public string PersonaId
+        {
+            get { return _personaId; }
+            set
+            {
+                value.ThrowIfInvalidArgument();
+                _personaId = value;
+            }
         }
 
         public string PhishingToken
@@ -169,6 +197,8 @@ namespace UltimateTeam.Toolkit.Factories
             request.SessionId = SessionId;
             request.HttpClient = HttpClient;
             request.Resources = _resources;
+            request.NucleusId = _nucleusId;
+            request.PersonaId = _personaId;
 
             return request;
         }
@@ -397,6 +427,36 @@ namespace UltimateTeam.Toolkit.Factories
             {
                 value.ThrowIfNullArgument();
                 _removeFromWatchlistRequestFactory = value;
+            }
+        }
+
+        public Func<IFutRequest<byte>> RemoveAllFromTradePileRequestFactory
+        {
+            get
+            {
+                return _removeAllFromTradePileRequestFactory ??
+                       (_removeAllFromTradePileRequestFactory =
+                           () => SetSharedRequestProperties(new RemoveAllFromTradePileRequest()));
+            }
+            set
+            {
+                value.ThrowIfNullArgument();
+                _removeAllFromTradePileRequestFactory = value;
+            }
+        }
+
+        public Func<bool, int, string, string, string, IFutRequest<byte>> SendPinEventRequestFactory
+        {
+            get
+            {
+                return _sendPinEventRequestFactory ??
+                       (_sendPinEventRequestFactory =
+                           (mobile, s, str1, str2, str3) => SetSharedRequestProperties(new PinEventRequest(mobile, s, str1, str2, str3)));
+            }
+            set
+            {
+                value.ThrowIfNullArgument();
+                _sendPinEventRequestFactory = value;
             }
         }
 

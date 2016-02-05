@@ -51,9 +51,12 @@ namespace UltimateTeam.Toolkit.Requests
                 var shards = await GetShardsAsync(nucleusId);
                 var userAccounts = await GetUserAccountsAsync(_loginDetails.Platform);
                 var sessionId = await GetSessionIdAsync(userAccounts, _loginDetails.Platform);
+                var personaId = sessionId.Split(':')[1];
+                var personaName = sessionId.Split(':')[2];
+                sessionId = sessionId.Split(':')[0];
                 var phishingToken = await ValidateAsync(_loginDetails, sessionId);
 
-                return new LoginResponse(nucleusId, shards, userAccounts, sessionId, phishingToken);
+                return new LoginResponse(nucleusId, shards, userAccounts, sessionId, phishingToken, personaId, personaName);
             }
             catch (Exception e)
             {
@@ -101,7 +104,7 @@ namespace UltimateTeam.Toolkit.Requests
                 .Split(new[] { ':' })[1]
                 .Replace("\"", string.Empty);
 
-            return sessionId;
+            return sessionId+":"+persona.PersonaId.ToString()+":"+persona.PersonaName;
         }
 
         public static string GetGameSku(Platform platform)

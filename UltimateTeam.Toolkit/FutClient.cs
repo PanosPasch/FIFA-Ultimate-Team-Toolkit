@@ -34,6 +34,8 @@ namespace UltimateTeam.Toolkit
             var loginResponse = await loginRequest.PerformRequestAsync();
             RequestFactories.PhishingToken = loginResponse.PhishingToken;
             RequestFactories.SessionId = loginResponse.SessionId;
+            RequestFactories.NucleusId = loginResponse.NucleusId;
+            RequestFactories.PersonaId = loginResponse.PersonaId;
 
             return loginResponse;
         }
@@ -46,6 +48,8 @@ namespace UltimateTeam.Toolkit
             var loginResponse = await loginRequest.PerformRequestAsync();
             RequestFactories.PhishingToken = loginResponse.PhishingToken;
             RequestFactories.SessionId = loginResponse.SessionId;
+            RequestFactories.NucleusId = loginResponse.NucleusId;
+            RequestFactories.PersonaId = loginResponse.PersonaId;
 
             return loginResponse;
         }
@@ -166,6 +170,16 @@ namespace UltimateTeam.Toolkit
         public Task RemoveFromWatchlistAsync(AuctionInfo auctionInfo)
         {
             return RemoveFromWatchlistAsync(new[] { auctionInfo });
+        }
+
+        public Task RemoveAllFromTradePileAsync()
+        {
+            return _requestFactories.RemoveAllFromTradePileRequestFactory().PerformRequestAsync();
+        }
+
+        public Task SendPinEventDataAsync(bool Mobile, int S, string FromID, string ToID, string Menu)
+        {
+            return _requestFactories.SendPinEventRequestFactory(Mobile, S, FromID, ToID, Menu).PerformRequestAsync();
         }
 
         public Task RemoveFromTradePileAsync(AuctionInfo auctionInfo)
