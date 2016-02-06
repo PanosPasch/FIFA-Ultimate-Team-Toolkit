@@ -66,7 +66,7 @@ namespace UltimateTeam.Toolkit.Factories
 
         private Func<IFutRequest<byte>> _removeAllFromTradePileRequestFactory;
 
-        private Func<bool, int, string, string, string, IFutRequest<byte>> _sendPinEventRequestFactory;
+        private Func<bool, int, string, string, string, string, bool, IFutRequest<byte>> _sendPinEventRequestFactory;
 
         private Func<ushort, IFutRequest<SquadDetailsResponse>> _squadDetailsRequestFactory;
 
@@ -445,13 +445,13 @@ namespace UltimateTeam.Toolkit.Factories
             }
         }
 
-        public Func<bool, int, string, string, string, IFutRequest<byte>> SendPinEventRequestFactory
+        public Func<bool, int, string, string, string, string, bool, IFutRequest<byte>> SendPinEventRequestFactory
         {
             get
             {
                 return _sendPinEventRequestFactory ??
                        (_sendPinEventRequestFactory =
-                           (mobile, s, str1, str2, str3) => SetSharedRequestProperties(new PinEventRequest(mobile, s, str1, str2, str3)));
+                           (mobile, s, str1, str2, str3, str4, bool1) => SetSharedRequestProperties(new PinEventRequest(mobile, s, str1, str2, str3, str4, bool1)));
             }
             set
             {

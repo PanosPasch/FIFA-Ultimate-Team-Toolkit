@@ -120,6 +120,37 @@ namespace UltimateTeam.Toolkit.Requests
             HttpClient.AddConnectionKeepAliveHeader();
         }
 
+        protected void AddPinHeaders()
+        {
+            HttpClient.AddConnectionKeepAliveHeader();
+            HttpClient.AddRequestHeader("Origin", "https://www.easports.com");
+            HttpClient.AddRequestHeader("x-ea-taxv", "1.1");
+            HttpClient.AddRequestHeader("x-ea-game-type", "sku");
+            AddUserAgent();
+            HttpClient.AddRequestHeader(HttpHeaders.ContentType, "application/json");
+            HttpClient.AddRequestHeader("X-Requested-With", "ShockwaveFlash/20.0.0.286");
+            HttpClient.AddRequestHeader("x-ea-game-id", "fifa16");
+            AddAcceptHeader("*/*");
+            AddReferrerHeader("https://www.easports.com/iframe/fut16/bundles/futweb/web/flash/FifaUltimateTeam.swf?cl=155438");
+            AddAcceptEncodingHeader();
+            AddAcceptLanguageHeader();
+        }
+
+        protected void AddPinHeadersMobile()
+        {
+            HttpClient.AddConnectionKeepAliveHeader();
+            HttpClient.AddRequestHeader("Origin", "file://");
+            HttpClient.AddRequestHeader("x-ea-taxv", "1");
+            HttpClient.AddRequestHeader("CSP", "active");
+            AddMobileUserAgent();
+            HttpClient.AddRequestHeader(HttpHeaders.ContentType, "application/json");
+            AddAcceptHeader("text/plain, */*; q=0.01");
+            HttpClient.AddRequestHeader("x-ea-game-id-type", "sellid");
+            HttpClient.AddRequestHeader("x-ea-game-id", "859051");
+            AddAcceptEncodingHeader();
+            AddAcceptLanguageHeader();
+        }
+
         protected void AddUserAgent()
         {
             HttpClient.AddRequestHeader(HttpHeaders.UserAgent, "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36");

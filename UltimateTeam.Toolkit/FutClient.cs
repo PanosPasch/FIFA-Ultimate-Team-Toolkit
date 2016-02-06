@@ -177,9 +177,9 @@ namespace UltimateTeam.Toolkit
             return _requestFactories.RemoveAllFromTradePileRequestFactory().PerformRequestAsync();
         }
 
-        public Task SendPinEventDataAsync(bool Mobile, int S, string FromID, string ToID, string Menu)
+        public Task SendPinEventDataAsync(bool Mobile, int S, string FromID, string ToID, string Menu, string En, bool Status)
         {
-            return _requestFactories.SendPinEventRequestFactory(Mobile, S, FromID, ToID, Menu).PerformRequestAsync();
+            return _requestFactories.SendPinEventRequestFactory(Mobile, S, FromID, ToID, Menu, En, Status).PerformRequestAsync();
         }
 
         public Task RemoveFromTradePileAsync(AuctionInfo auctionInfo)
