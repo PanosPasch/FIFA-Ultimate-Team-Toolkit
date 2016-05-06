@@ -45,7 +45,7 @@ namespace UltimateTeam.Toolkit.Models
 
         public byte Morale { get; set; }
 
-        public byte Owners { get; set; }
+        public int Owners { get; set; }
 
         public ChemistryStyle PlayStyle { get; set; }
 
