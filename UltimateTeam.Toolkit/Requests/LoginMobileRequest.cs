@@ -107,7 +107,7 @@ namespace UltimateTeam.Toolkit.Requests
             var session_code = (await Deserialize<GatewayResponse>(accessTokenResponse)).code;
 
             var authResponseMessage = await HttpClient.PostAsync(string.Format("{0}/ut/auth?timestamp={1}", _route, CreateTimestamp()), new StringContent(
-               string.Format(@"{{ ""isReadOnly"": false, ""sku"": ""FUT16AND"", ""clientVersion"": 18, ""nucleusPersonaId"": {0}, ""gameSku"": ""{2}"", ""locale"": ""en-GB"", ""method"": ""authcode"", ""priorityLevel"":4, ""identification"": {{ ""authCode"": ""{4}"", ""redirectUrl"": ""nucleus:rest"" }} }}",
+               string.Format(@"{{ ""isReadOnly"": false, ""sku"": ""FUT16AND"", ""clientVersion"": 20, ""nucleusPersonaId"": {0}, ""gameSku"": ""{2}"", ""locale"": ""en-GB"", ""method"": ""authcode"", ""priorityLevel"":4, ""identification"": {{ ""authCode"": ""{4}"", ""redirectUrl"": ""nucleus:rest"" }} }}",
                     persona.PersonaId, persona.PersonaName, GetGameSku(platform), GetNucleusPersonaPlatform(platform), session_code)));
             authResponseMessage.EnsureSuccessStatusCode();
             var sessionId = Regex.Match(await authResponseMessage.Content.ReadAsStringAsync(), "\"sid\":\"\\S+\"")
@@ -214,6 +214,13 @@ namespace UltimateTeam.Toolkit.Requests
                                                                                                                              new KeyValuePair<string, string>("_eventId", "submit"),
                                                                                                                              new KeyValuePair<string, string>("facebookAuth", "")
                                                                                                                          }));
+            loginResponseMessage.EnsureSuccessStatusCode();
+
+            var scriptCode = await loginResponseMessage.Content.ReadAsStringAsync();
+            var step2Uri = Regex.Match(scriptCode, @"'[A-Za-z:\/.0-9?=]*'").Value.Replace("'", "");
+            step2Uri += "&_eventId=end";
+
+            loginResponseMessage = await HttpClient.GetAsync(step2Uri);
             loginResponseMessage.EnsureSuccessStatusCode();
 
             string code = "";
