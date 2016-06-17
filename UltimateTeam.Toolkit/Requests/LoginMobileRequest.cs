@@ -133,7 +133,7 @@ namespace UltimateTeam.Toolkit.Requests
                 case Platform.Pc:
                     return "FFA16PCC";
                 default:
-                    throw new ArgumentOutOfRangeException(/*nameof(platform)*/platform.ToString(), platform, null);
+                    throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
             }
         }
 
