@@ -2,6 +2,10 @@ using System.Collections.Generic;
 
 namespace UltimateTeam.Toolkit.Parameters
 {
+
+    //type: development
+    //method: fitness
+
     public class FitnessCard : SearchParameterBase<uint>
     {
         public const uint ShinyBronzeFitness = 1615614740 - 1610612736;

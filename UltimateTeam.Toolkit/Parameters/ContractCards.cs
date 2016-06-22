@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 namespace UltimateTeam.Toolkit.Parameters
 {
+    //type: development
+    //method: contract
     public class ContractCard : SearchParameterBase<uint>
     {
         public const uint ShinyBronzePlayerContract = 1615613740 - 1610612736;
